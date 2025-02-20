@@ -150,6 +150,16 @@
     <p>The <dfn class="export">source pixel ratio</dfn> of a <a>display
     surface</a> is 1/96th of 1 inch divided by its vertical pixel size.</p>
 
+    <p>The <dfn class="export">physical resolution</dfn> of a <a>display
+    surface</a> is its resolution (width and height) in pixels. It is not
+    affected by potential rescaling or cropping that may be applied by width or
+    height constraints</p>
+
+    <p>The <dfn class="export">logical resolution</dfn> of a <a>display
+    surface</a> is its resolution (width and height) in logical pixels.
+    The logical width/height of a <a>display surface</a> is the result
+    of deviding its physical width/height by the <a>display surface</a>'s
+    {{ScreenDetailed/devicePixelRatio}}.</p>
 
     <p>The <dfn class="event">devicechange</dfn> event is defined in
     [[GETUSERMEDIA]].</p>
@@ -878,6 +888,52 @@
             capability, the user agent MUST include only the set of values from
             {{CursorCaptureConstraint}} it is capable of supporting for this
             [=display surface=].</td>
+          </tr>
+
+          <tr id="def-constraint-physical-width">
+            <td><dfn class="export">physicalWidth</dfn>
+            </td>
+
+            <td>{{unsigned long}}</td>
+
+            <td>The width of the <a>display surface</a> in pixels.
+              It cannot be used as a constraint or capability.
+            </td>
+          </tr>
+
+          <tr id="def-constraint-physical-height">
+            <td><dfn class="export">physicalHeight</dfn>
+            </td>
+
+            <td>{{unsigned long}}</td>
+
+            <td>The height of the <a>display surface</a> in pixels.
+              It cannot be used as a constraint or capability.
+            </td>
+          </tr>
+
+          <tr id="def-constraint-logical-width">
+            <td><dfn class="export">logicalWidth</dfn>
+            </td>
+
+            <td>{{unsigned long}}</td>
+
+            <td>The width of the <a>display surface</a> in pixels divided by
+              the <a>display surface</a>'s devicePixelRatio.
+              It cannot be used as a constraint or capability.
+            </td>
+          </tr>
+
+          <tr id="def-constraint-logical-height">
+            <td><dfn class="export">logicalHeight</dfn>
+            </td>
+
+            <td>{{unsigned long}}</td>
+
+            <td>The height of the <a>display surface</a> in pixels divided by
+              the <a>display surface</a>'s devicePixelRatio.
+              It cannot be used as a constraint or capability.
+            </td>
           </tr>
         </tbody>
       </table>
@@ -1872,6 +1928,10 @@ dictionary DisplayMediaStreamOptions {
   DOMString cursor;
   boolean restrictOwnAudio;
   boolean suppressLocalAudioPlayback;
+  unsigned long physicalWidth;
+  unsigned long physicalHeight;
+  unsigned long logicalWidth;
+  unsigned long logicalHeight;
 };</pre>
 
         <dl data-link-for="MediaTrackSettings" data-dfn-for=
@@ -1923,6 +1983,39 @@ dictionary DisplayMediaStreamOptions {
             <p>Indicates whether or not the application instructed the user
             agent to apply [=local audio playback suppression=] to the
             source.</p>
+          </dd>
+
+
+          <dt><dfn>physicalWidth</dfn> of type {{unsigned long}}</dt>
+
+
+          <dd>
+            <p>The width of the <a>display surface</a> being captured.
+            See [=physical resolution=].</p>
+          </dd>
+
+          <dt><dfn>physicalHeight</dfn> of type {{unsigned long}}</dt>
+
+
+          <dd>
+            <p>The height of the <a>display surface</a> being captured.
+            See [=physical resolution=].</p>
+          </dd>
+
+
+          <dt><dfn>logicalWidth</dfn> of type {{unsigned long}}</dt>
+
+
+          <dd>
+            <p>The logical width of the <a>display surface</a> being captured.
+            See [=logical resolution=].</p>
+          </dd>
+
+          <dt><dfn>logicalHeight</dfn> of type {{unsigned long}}</dt>
+
+          <dd>
+            <p>The logical height of the <a>display surface</a> being captured.
+            See [=logical resolution=].</p>
           </dd>
         </dl>
       </section>
